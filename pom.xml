@@ -25,8 +25,8 @@
                 <includes>
                     <include>**/*.fxml</include>
                 </includes>
+                <targetPath>/views</targetPath>
             </resource>
-            ...
         </resources>
     </build>
 

@@ -24,7 +24,13 @@
         </font>
     </Button>
 
-    <Button  onAction="#fromRedditClicked" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="2" prefHeight="50" prefWidth="175" text="Reddit">
+    <Button onAction="#fromRedditClicked" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="2" prefHeight="50" prefWidth="175" text="Reddit">
+        <font>
+            <Font size="16"/>
+        </font>
+    </Button>
+
+    <Button onAction="#downloadStreamClicked" GridPane.columnIndex="0" GridPane.rowIndex="2" GridPane.columnSpan="2" prefHeight="50" prefWidth="175" text="DownStream">
         <font>
             <Font size="16"/>
         </font>

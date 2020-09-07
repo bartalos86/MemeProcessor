@@ -12,11 +12,9 @@ import uk.co.caprica.vlcj.factory.MediaPlayerFactory;
 import uk.co.caprica.vlcj.player.base.MediaPlayer;
 import uk.co.caprica.vlcj.player.base.MediaPlayerEventAdapter;
 import uk.co.caprica.vlcj.player.embedded.EmbeddedMediaPlayer;
-import uk.co.caprica.vlcj.player.embedded.videosurface.VideoSurface;
 import static uk.co.caprica.vlcj.javafx.videosurface.ImageViewVideoSurfaceFactory.videoSurfaceForImageView;
 
 import javax.imageio.ImageIO;
-import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -25,7 +23,7 @@ import java.util.Arrays;
 
 public class VideoProcessor {
 
-    private ImageView display;
+    private final ImageView display;
 
     public VideoProcessor(ImageView display) {
         this.display = display;
@@ -84,7 +82,7 @@ public class VideoProcessor {
                     @Override
                     public void playing(MediaPlayer mediaPlayer) {
                         super.playing(mediaPlayer);
-                       // mediaPlayer.controls().setRate(0);
+                       mediaPlayer.controls().setRate(0);
                         startNano = System.nanoTime();
                         mediaPlayer.audio().setMute(true);
 
@@ -130,6 +128,7 @@ public class VideoProcessor {
 
                                 mediaPlayer.controls().pause();
                                 image = mediaPlayer.snapshots().get();
+
                                 Java2DFrameConverter conv = new Java2DFrameConverter();
                                 Frame frame = conv.convert(image);
 
@@ -151,7 +150,8 @@ public class VideoProcessor {
 
                             }
                         });
-                        elapsedSec += (System.nanoTime() - startNano) / (60 * 60 * 60 * 60 * 60);
+                        elapsedSec = (System.nanoTime() - startNano) / (60 * 60 * 60 * 60 * 60);
+
                         percentage = pos;
                         float remainingTime = (100 - (pos*100))*(elapsedSec/(pos*100));
 
@@ -160,6 +160,8 @@ public class VideoProcessor {
                         if(pos > 0.995f){
                             mediaPlayer.release();
                             mediaPlayerFactory.release();
+                            System.out.println("Finish - Done");
+
                         }
                     }
 
@@ -173,6 +175,7 @@ public class VideoProcessor {
 
                                 if((++numOfFinish) >= 3){
                                     mediaPlayer.release();
+                                    succeeded();
                                 }
                                 System.out.println("Finish");
                             }
@@ -299,6 +302,7 @@ public class VideoProcessor {
                 }
 
                 frameGrabber.stop();
+                succeeded();
                 return null;
             }
 

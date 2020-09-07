@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.image.ImageView?>
+<GridPane xmlns="http://javafx.com/javafx"
+          xmlns:fx="http://javafx.com/fxml"
+          fx:controller="sample.controllers.DownloadStreamController"
+          prefHeight="650.0" prefWidth="1000.0" vgap="5" hgap="5" alignment="CENTER">
+
+    <Label fx:id="statusLabel" GridPane.rowIndex="0" GridPane.columnIndex="0" GridPane.columnSpan="4" GridPane.halignment="CENTER" >
+
+    </Label>
+
+    <HBox GridPane.columnIndex="0" GridPane.rowIndex="1" prefHeight="200" prefWidth="550" GridPane.columnSpan="1">
+        <ImageView fx:id="imageView" fitHeight="350" fitWidth="550"/>
+    </HBox>
+
+    <ListView fx:id="videoList" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+    <Button onAction="#startExtraction" GridPane.rowIndex="2" GridPane.columnIndex="1" GridPane.columnSpan="1" prefWidth="150" GridPane.halignment="CENTER" text="Start extracting"/>
+
+
+    <Label GridPane.rowIndex="3" GridPane.columnIndex="0" text="Video url"/>
+    <TextField fx:id="urlField" GridPane.rowIndex="3" GridPane.columnIndex="1" />
+
+    <Label GridPane.rowIndex="4" GridPane.columnIndex="0" text="Splitter image"/>
+    <TextField fx:id="splitterPathField" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+    <Button fx:id="selectSplitterPathBtn" onAction="#chooseSplitter"  GridPane.rowIndex="4" GridPane.columnIndex="2" text="Choose splitter"/>
+
+    <Label GridPane.rowIndex="5" GridPane.columnIndex="0" text="Frameskip"/>
+    <TextField fx:id="frameSkipField" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+
+    <Label GridPane.rowIndex="6" GridPane.columnIndex="0" text="Video path"/>
+    <TextField fx:id="saveNameField" GridPane.rowIndex="6" GridPane.columnIndex="1" />
+
+    <Button onAction="#addItemToList" GridPane.rowIndex="7" GridPane.columnIndex="0" GridPane.columnSpan="3" prefWidth="150" GridPane.halignment="CENTER" text="Add"/>
+
+</GridPane>

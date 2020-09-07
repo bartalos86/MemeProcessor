@@ -14,10 +14,10 @@
     <orderEntry type="library" name="javafx-swt" level="project" />
     <orderEntry type="library" name="lib" level="project" />
     <orderEntry type="library" name="plugins" level="project" />
-    <orderEntry type="library" name="Maven: uk.co.caprica:vlcj:4.5.2" level="project" />
-    <orderEntry type="library" name="Maven: uk.co.caprica:vlcj-natives:4.5.0" level="project" />
-    <orderEntry type="library" name="Maven: net.java.dev.jna:jna:5.5.0" level="project" />
-    <orderEntry type="library" name="Maven: net.java.dev.jna:jna-platform:5.5.0" level="project" />
+    <orderEntry type="library" name="Maven: uk.co.caprica:vlcj:4.4.4" level="project" />
+    <orderEntry type="library" name="Maven: uk.co.caprica:vlcj-natives:4.1.0" level="project" />
+    <orderEntry type="library" name="Maven: net.java.dev.jna:jna:5.2.0" level="project" />
+    <orderEntry type="library" name="Maven: net.java.dev.jna:jna-platform:5.2.0" level="project" />
     <orderEntry type="library" name="Maven: org.bytedeco:javacv-platform:1.5.3" level="project" />
     <orderEntry type="library" name="Maven: org.bytedeco:javacv:1.5.3" level="project" />
     <orderEntry type="library" name="Maven: org.bytedeco:javacpp:1.5.3" level="project" />
@@ -35,10 +35,6 @@
     <orderEntry type="library" name="Maven: org.bytedeco:flandmark:1.07-1.5.3" level="project" />
     <orderEntry type="library" name="Maven: org.bytedeco:leptonica:1.79.0-1.5.3" level="project" />
     <orderEntry type="library" name="Maven: org.bytedeco:tesseract:4.1.1-1.5.3" level="project" />
-    <orderEntry type="library" name="Maven: org.openjfx:javafx-graphics:14" level="project" />
-    <orderEntry type="library" name="Maven: org.openjfx:javafx-graphics:win:14" level="project" />
-    <orderEntry type="library" name="Maven: org.openjfx:javafx-base:14" level="project" />
-    <orderEntry type="library" name="Maven: org.openjfx:javafx-base:win:14" level="project" />
     <orderEntry type="library" name="Maven: org.bytedeco:openblas-platform:0.3.9-1.5.3" level="project" />
     <orderEntry type="library" name="Maven: org.bytedeco:javacpp-platform:1.5.3" level="project" />
     <orderEntry type="library" name="Maven: org.bytedeco:javacpp:android-arm:1.5.3" level="project" />
@@ -194,5 +190,10 @@
     <orderEntry type="library" name="Maven: org.bytedeco:tesseract:macosx-x86_64:4.1.1-1.5.3" level="project" />
     <orderEntry type="library" name="Maven: org.bytedeco:tesseract:windows-x86:4.1.1-1.5.3" level="project" />
     <orderEntry type="library" name="Maven: org.bytedeco:tesseract:windows-x86_64:4.1.1-1.5.3" level="project" />
+    <orderEntry type="library" name="Maven: uk.co.caprica:vlcj-javafx:1.0.2" level="project" />
+    <orderEntry type="library" name="Maven: org.openjfx:javafx-graphics:14" level="project" />
+    <orderEntry type="library" name="Maven: org.openjfx:javafx-graphics:win:14" level="project" />
+    <orderEntry type="library" name="Maven: org.openjfx:javafx-base:14" level="project" />
+    <orderEntry type="library" name="Maven: org.openjfx:javafx-base:win:14" level="project" />
   </component>
 </module>

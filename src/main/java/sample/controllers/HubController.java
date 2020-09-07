@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import javax.imageio.ImageIO;
+import javax.swing.*;
 import javax.swing.plaf.synth.SynthTextAreaUI;
 import java.awt.image.BufferedImage;
 import java.io.*;
@@ -107,6 +108,23 @@ public class HubController {
             System.out.println("Total: " + (count-1));
 
         }
+
+    }
+    @FXML
+    public void downloadStreamClicked(ActionEvent event) throws IOException {
+
+        Parent root = FXMLLoader.load(getClass().getResource("/views/DownloadStream.fxml"));
+        Scene scene = new Scene(root,1000,650);
+        Stage stage = new Stage();
+        stage.setHeight(650);
+        stage.setWidth(1000);
+        stage.setTitle("Temporary download method");
+        stage.setScene(scene);
+
+        stage.show();
+
+        Stage mainWindow = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        mainWindow.close();
 
     }
 }

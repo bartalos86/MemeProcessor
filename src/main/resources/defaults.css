@@ -1,0 +1,29 @@
+GridPane{
+/*-fx-background-color: #555555;*/
+}
+
+.image-container{
+-fx-background-color: lightgray;
+}
+
+ImageView{
+-fx-background-color: lightgray;
+}
+.input-container{
+-fx-background-radius: 5;
+-fx-background-color: #eeeeee;
+-fx-padding: 17px;
+/*-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 3, 0, 0, 0);*/
+
+}
+.default-btn{
+-fx-background-color: #FF5151;
+-fx-text-fill: #ffffff;
+-fx-font-weight: bold;
+-fx-padding: 7px 15px;
+-fx-border-radius: 5px;
+
+}
+.default-btn:hover{
+-fx-background-color: #dd5151;
+}

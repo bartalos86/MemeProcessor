@@ -9,6 +9,7 @@ GridPane{
 ImageView{
 -fx-background-color: lightgray;
 }
+
 .input-container{
 -fx-background-radius: 5;
 -fx-background-color: #eeeeee;
@@ -16,6 +17,19 @@ ImageView{
 /*-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 3, 0, 0, 0);*/
 
 }
+.intro-btn{
+-fx-background-color: #55A5FF;
+-fx-text-fill: #ffffff;
+-fx-font-weight: bold;
+-fx-padding: 7px 15px;
+-fx-border-radius: 5px;
+-fx-font-size: 16px;
+}
+
+.intro-btn:hover{
+-fx-background-color: #308BF2;
+}
+
 .default-btn{
 -fx-background-color: #FF5151;
 -fx-text-fill: #ffffff;

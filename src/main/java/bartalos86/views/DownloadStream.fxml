@@ -48,12 +48,16 @@
         </Button>
 
         <Label fx:id="statusLabel" GridPane.columnIndex="4"
-               GridPane.halignment="RIGHT" alignment="BOTTOM_RIGHT" GridPane.rowIndex="2" GridPane.rowSpan="2" text="asdasdasdasdasdas"/>
+               GridPane.halignment="RIGHT" alignment="BOTTOM_RIGHT" GridPane.rowIndex="2" GridPane.rowSpan="2"/>
 
     </GridPane>
 
     <Button onAction="#startExtraction" styleClass="default-btn" prefWidth="150"
             text="Start extracting" GridPane.columnIndex="1" GridPane.columnSpan="1"
             GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+
+    <Button onAction="#readItemsFromFile" styleClass="default-btn" prefWidth="150"
+            text="Load from file" GridPane.columnIndex="1" GridPane.columnSpan="1"
+            GridPane.halignment="CENTER" GridPane.rowIndex="5" />
 
 </GridPane>

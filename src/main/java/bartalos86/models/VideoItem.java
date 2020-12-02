@@ -16,8 +16,8 @@ public class VideoItem {
         this.splitterPath = splitterPath;
         this.frameSkip = rate;
         this.extractFolder = extractFolder;
-        id = ID;
-        ID++;
+        id = ID++;
+        //id = extractFolder.hashCode();
 
     }
 

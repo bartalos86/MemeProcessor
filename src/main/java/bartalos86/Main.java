@@ -27,11 +27,8 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        String path = "D:\\Projektek\\Java\\MemeProcessor\\src\\main\\java\\bartalos86\\views\\Hub.fxml";
         System.out.println(getClass().getResource("/views/Hub.fxml"));
         Parent root = FXMLLoader.load(getClass().getResource("/views/Hub.fxml"));
-       // Parent root = FXMLLoader.load(getClass().getResource("/views/Hub.fxml"));
-        //Group root = new Group();
         primaryStage.setTitle("Meme extractor");
        Scene scene = new Scene(root, 800, 600);
        primaryStage.setScene(scene);
@@ -73,8 +70,8 @@ public class Main extends Application {
         System.loadLibrary("libvlccore");
         System.loadLibrary("libvlc");
 
-        BufferedImage image = ImageIO.read(new File("Resources/testMeme2.png"));
-        ImageProcessor.extractText(image);
+        /*BufferedImage image = ImageIO.read(new File("Resources/testMeme2.png"));
+        ImageProcessor.extractText(image);*/
         //BufferedImage image2 = ImageIO.read(new File("Resources/testMeme.png"));
         //ImageProcessor.extractText(image2);
         launch(args);

@@ -21,7 +21,6 @@ public class ImageProcessor {
 
     public static String extractText(BufferedImage image) throws TesseractException, IOException {
 
-
         OpenCVFrameConverter.ToMat matconv = new OpenCVFrameConverter.ToMat();
         Java2DFrameConverter buffConverter = new Java2DFrameConverter();
 
@@ -29,11 +28,8 @@ public class ImageProcessor {
         tess.setTessVariable("user_defined_dpi","400");
 
         tess.setDatapath("Resources");
-
         Mat black = new Mat();
         BufferedImage gray = ImageHelper.convertImageToGrayscale(image);
-        //gray = ImageHelper.convertImageToBinary(gray);
-
 
         Mat mat = matconv.convertToOrgOpenCvCoreMat(buffConverter.convert(image));
       /*  Imgproc.cvtColor(mat,black, Imgproc.COLOR_RGBA2GRAY);//Imgproc.COLOR_BGR2GRAY
@@ -69,7 +65,7 @@ public class ImageProcessor {
         //System.out.println(Arrays.toString(tess.getWords(image,6).toArray()));
         String data = text.replaceAll("[^A-Za-z\\d \\n]","");
         data = data.replace("\n", " ");
-        System.out.println("Recognized text: " + data);
+        //System.out.println("Recognized text: " + data);
         return data;
     }
 
@@ -138,7 +134,7 @@ public class ImageProcessor {
             }
 
 
-            System.out.println("AVG: " + averageSum);
+            //System.out.println("AVG: " + averageSum);
             Map<Integer, Integer> xMap = new HashMap<>();
             averageSum = totalSum / (mat.rows() * mat.cols());
 
@@ -183,7 +179,7 @@ public class ImageProcessor {
             if (minimalOffset < padding)
                 padding = 0;
 
-            System.out.println("MINOFF: " + minimalOffset);
+            //System.out.println("MINOFF: " + minimalOffset);
             imageWidth -= minimalOffset * 2 - padding;
 
             if (imageWidth < 300 || minimalOffset > mat.cols()) {
@@ -197,7 +193,7 @@ public class ImageProcessor {
 
         }
 
-        System.out.println("No cropping");
+        //System.out.println("No cropping");
         return new ImageCropData(0, (int) imageWidth, mat.rows());
     }
 

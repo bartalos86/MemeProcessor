@@ -81,6 +81,10 @@ public class FileController implements Initializable {
 
         statusLabel.textProperty().bind(videoTask.messageProperty());
 
+        videoTask.setOnFailed((event) ->{
+            System.out.println(event.getSource().exceptionProperty().toString());
+
+        });
         Thread thread = new Thread(videoTask);
         thread.setDaemon(true);
 

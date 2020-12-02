@@ -1,5 +1,4 @@
 module MemeProcessor {
-    requires uk.co.caprica.vlcj;
     requires org.bytedeco.javacpp;
     requires org.bytedeco.openblas;
     requires org.bytedeco.javacv;
@@ -14,21 +13,19 @@ module MemeProcessor {
     requires org.bytedeco.leptonica;
     requires org.bytedeco.libdc1394;
     requires javafx.fxml;
+    requires javafx.base;
     requires javafx.controls;
     requires java.desktop;
-    requires static javafx.swt;
     requires static org.bytedeco.opencv;
     requires org.bytedeco.javacv.platform;
     requires org.slf4j;
     requires org.bytedeco.tesseract;
     requires org.bytedeco.tesseract.windows.x86_64;
     requires tess4j;
-    requires uk.co.caprica.vlcj.javafx;
+    requires javafx.graphics;
 
     exports bartalos86.controllers;
 
     opens bartalos86;
     opens bartalos86.controllers;
-
-
 }

@@ -7,7 +7,6 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.*;
@@ -33,7 +32,7 @@ public class HubController {
 
     }
 
-    @FXML
+    /*@FXML
     public void fromStreamClicked(ActionEvent event) throws IOException {
 
         Parent root = FXMLLoader.load(getClass().getResource("/views/Stream.fxml"));
@@ -48,7 +47,7 @@ public class HubController {
         Stage mainWindow = (Stage) ((Node)event.getSource()).getScene().getWindow();
         mainWindow.close();
 
-    }
+    }*/
 
     @FXML
     public void fromRedditClicked(ActionEvent event) throws IOException {

@@ -11,11 +11,10 @@ import javafx.scene.input.KeyEvent;
 import javafx.stage.FileChooser;
 import bartalos86.VideoProcessor;
 import bartalos86.models.VideoItem;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStreamReader;
+
+import java.io.*;
 import java.nio.file.Files;
+import java.nio.file.Path;
 
 public class DownloadStreamController {
 
@@ -55,6 +54,7 @@ public class DownloadStreamController {
         FileChooser chooser = new FileChooser();
         File choosenFile = chooser.showOpenDialog(((Node) event.getTarget()).getScene().getWindow());
         splitterPathField.setText(choosenFile.getAbsolutePath());
+
     }
 
     @FXML
@@ -79,7 +79,27 @@ public class DownloadStreamController {
         File downloads = new File("temp");
 
         File[] files = downloads.listFiles();
+        if(files != null)
         processDownloadedVideosRecursive(files, 0);
+    }
+
+    @FXML
+    private void readItemsFromFile() throws IOException {
+        File list = new File("download-list.txt");
+        if(!list.exists())
+            return;
+
+       BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(list.getPath())));
+        String line;
+
+        while((line = reader.readLine()) != null){
+            String[] params = line.split(";");
+            VideoItem itemToAdd = new VideoItem(params[0],params[1],Integer.parseInt(params[2]),params[3]);
+            videoList.getItems().add(itemToAdd);
+        }
+
+
+
     }
 
     private void processDownloadedVideosRecursive(File[] files, int index) throws IOException {
@@ -107,22 +127,25 @@ public class DownloadStreamController {
         }
 
         Task<Void> videoTask = createVideoprocessorTask(videoFile, theItem.getSplitterPath(), theItem.getFrameSkip(), theItem.getExtractFolder());
+
+        VideoItem finalTheItem = theItem;
         videoTask.setOnSucceeded((event) -> {
 
                 System.out.println("Suceeded");
-                VideoItem item = (VideoItem) videoList.getItems().get(index);
+                VideoItem item = (VideoItem) videoList.getItems().get(videoList.getItems().indexOf(finalTheItem));
                 item.setStatus("✅ Finished - ");
                 //processDownloadedVideosRecursive(files, index + 1);
 
         });
 
+
        videoTask.setOnFailed((event)-> {
            System.out.println("Failed");
            try {
                System.out.println("Index " + index + " Total video files: " + files.length);
-               VideoItem item = (VideoItem) videoList.getItems().get(index);
+               VideoItem item = (VideoItem) videoList.getItems().get(videoList.getItems().indexOf(finalTheItem));
                item.setStatus(" ❌ Failed - ");
-
+               System.out.println(event.getSource().exceptionProperty().toString());
 
                processDownloadedVideosRecursive(files, index + 1);
            } catch (IOException e) {
@@ -182,8 +205,9 @@ public class DownloadStreamController {
         }
     }
 
-    private void downloadVideoSync(ObservableList<VideoItem> videos) throws IOException {
+    private void downloadVideoSync(ObservableList<VideoItem> videos) throws IOException, InterruptedException {
 
+        System.out.println("Video count: "+videos.size());
         for (VideoItem video: videos) {
             Runtime runtime = Runtime.getRuntime();
             ProcessBuilder builder = new ProcessBuilder(
@@ -200,6 +224,8 @@ public class DownloadStreamController {
                 }
                 System.out.println(line);
             }
+
+            proc.waitFor();
         }
 
     }

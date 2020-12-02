@@ -36,7 +36,7 @@ public class MemeProcessor {
             if (isCutterFrame && !isPreviousCutterFrame) {
                 File memePath = getMemePath(outputPath, saveName);
                 Files.createDirectories(memePath.toPath());
-                System.out.println("Meme detected");
+                //System.out.println("Meme detected");
                 BufferedImage croppedMeme = cropToSize(previousFrame);
                 display.setImage(fxConverter.convert(previousFrame));
 

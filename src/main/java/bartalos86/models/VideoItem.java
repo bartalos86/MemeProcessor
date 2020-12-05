@@ -1,24 +1,26 @@
 package bartalos86.models;
 
-import javafx.scene.Node;
-
 public class VideoItem {
     private String url;
     private String splitterPath;
     private int frameSkip;
     private String extractFolder;
-    private static int ID = 0;
-    private int id;
+    private String id;
     private String status = "";
+
 
     public VideoItem(String url, String splitterPath, int rate, String extractFolder) {
         this.url = url;
         this.splitterPath = splitterPath;
         this.frameSkip = rate;
         this.extractFolder = extractFolder;
-        id = ID++;
-        //id = extractFolder.hashCode();
+        id = extractId();
 
+    }
+
+    private String extractId(){
+        int lastIndex = url.contains("&") ? url.indexOf("&") : url.length();
+        return url.substring(url.lastIndexOf("v=")+2,lastIndex);
     }
 
     public String getUrl() {
@@ -53,7 +55,7 @@ public class VideoItem {
         this.extractFolder = extractFolder;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 

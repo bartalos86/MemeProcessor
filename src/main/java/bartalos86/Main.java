@@ -15,12 +15,7 @@ import org.opencv.core.MatOfKeyPoint;
 import org.opencv.features2d.Features2d;
 import org.opencv.imgcodecs.Imgcodecs;
 import org.opencv.xfeatures2d.SURF;
-
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
-
 
 public class Main extends Application {
 
@@ -64,16 +59,13 @@ public class Main extends Application {
     }
 
 
-    public static void main(String[] args) throws IOException, TesseractException {
+
+    public static void main(String[] args) {
 
         System.loadLibrary("opencv_java440");
         System.loadLibrary("libvlccore");
         System.loadLibrary("libvlc");
 
-        /*BufferedImage image = ImageIO.read(new File("Resources/testMeme2.png"));
-        ImageProcessor.extractText(image);*/
-        //BufferedImage image2 = ImageIO.read(new File("Resources/testMeme.png"));
-        //ImageProcessor.extractText(image2);
         launch(args);
     }
 }

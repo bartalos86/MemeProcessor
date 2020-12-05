@@ -1,5 +1,11 @@
 package bartalos86.controllers;
 
+import com.github.kiulian.downloader.YoutubeDownloader;
+import com.github.kiulian.downloader.YoutubeException;
+import com.github.kiulian.downloader.model.YoutubeVideo;
+import com.github.kiulian.downloader.model.formats.Format;
+import com.github.kiulian.downloader.model.formats.VideoFormat;
+import com.github.kiulian.downloader.model.quality.VideoQuality;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
@@ -15,6 +21,9 @@ import bartalos86.models.VideoItem;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.Future;
 
 public class DownloadStreamController {
 
@@ -68,7 +77,7 @@ public class DownloadStreamController {
     }
 
     @FXML
-    public void startExtraction(ActionEvent event) throws IOException, InterruptedException {
+    public void startExtraction(ActionEvent event) throws IOException, InterruptedException, YoutubeException {
         ObservableList<VideoItem> videoItems = videoList.getItems();
 
         downloadVideos(videoItems);
@@ -112,11 +121,11 @@ public class DownloadStreamController {
         String name = videoFile.getName();
 
 
-        int id = Integer.parseInt(name.substring(0, name.indexOf('.')));
+        String id = name.substring(0, name.indexOf('.'));
         VideoItem theItem = null;
         for (Object videoI : videoList.getItems()) {
             VideoItem videoItem = ((VideoItem) videoI);
-            if (videoItem.getId() == id) {
+            if (videoItem.getId().equals(id)) {
                 theItem = videoItem;
                 System.out.println("Video found with id: " + id);
                 break;
@@ -134,7 +143,11 @@ public class DownloadStreamController {
                 System.out.println("Suceeded");
                 VideoItem item = (VideoItem) videoList.getItems().get(videoList.getItems().indexOf(finalTheItem));
                 item.setStatus("✅ Finished - ");
-                //processDownloadedVideosRecursive(files, index + 1);
+            try {
+                processDownloadedVideosRecursive(files, index + 1);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
         });
 
@@ -185,7 +198,7 @@ public class DownloadStreamController {
 
     }
 
-    private void downloadVideos(ObservableList<VideoItem> videos) throws IOException, InterruptedException {
+    private void downloadVideos(ObservableList<VideoItem> videos) throws IOException, InterruptedException, YoutubeException {
         File tempdir = new File("temp");
         if (!tempdir.exists())
             Files.createDirectory(tempdir.toPath());
@@ -205,62 +218,33 @@ public class DownloadStreamController {
         }
     }
 
-    private void downloadVideoSync(ObservableList<VideoItem> videos) throws IOException, InterruptedException {
+    private void downloadVideo(String videoID) throws YoutubeException, IOException {
+
+        System.out.println(videoID);
+        YoutubeDownloader downloader = new YoutubeDownloader();
+        YoutubeVideo video = downloader.getVideo(videoID);
+        List<VideoFormat> formats = video.videoFormats();
+        VideoFormat desiredFormat = null;
+        for (VideoFormat format:
+             formats) {
+            if(format.videoQuality().equals(VideoQuality.hd720)){
+                desiredFormat = format;
+                break;
+            }
+        }
+
+        video.download(desiredFormat,new File("temp"),videoID);
+
+    }
+
+    private void downloadVideoSync(ObservableList<VideoItem> videos) throws IOException, InterruptedException, YoutubeException {
 
         System.out.println("Video count: "+videos.size());
         for (VideoItem video: videos) {
-            Runtime runtime = Runtime.getRuntime();
-            ProcessBuilder builder = new ProcessBuilder(
-                    "cmd.exe", "/c", "cd temp && youtube-dl","-o", String.valueOf(video.getId()), video.getUrl());
 
-            Process proc = builder.start();
-
-            BufferedReader r = new BufferedReader(new InputStreamReader(proc.getInputStream()));
-            String line;
-            while (true) {
-                line = r.readLine();
-                if (line == null) {
-                    break;
-                }
-                System.out.println(line);
-            }
-
-            proc.waitFor();
+            downloadVideo(video.getId());
         }
 
     }
 
-    private void downloadVideosRecursive(ObservableList<VideoItem> videos, int index) throws IOException, InterruptedException {
-
-        if (index == videos.size() || index > videos.size())
-            return;
-
-        VideoItem video = videos.get(index);
-
-
-        Runtime runtime = Runtime.getRuntime();
-        ProcessBuilder builder = new ProcessBuilder(
-                "cmd.exe", "/c", "cd temp && youtube-dl","-o", String.valueOf(video.getId()), video.getUrl());
-
-        Process proc = builder.start();
-
-        BufferedReader r = new BufferedReader(new InputStreamReader(proc.getInputStream()));
-        String line;
-        while (true) {
-            line = r.readLine();
-            if (line == null) {
-                break;
-            }
-            System.out.println(line);
-        }
-
-        proc.onExit().thenRun(() -> {
-            System.out.println("Done");
-            try {
-                downloadVideosRecursive(videos, index + 1);
-            } catch (IOException | InterruptedException e) {
-                e.printStackTrace();
-            }
-        }).wait();
-    }
 }

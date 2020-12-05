@@ -13,6 +13,8 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="lib" level="project" />
     <orderEntry type="library" name="plugins" level="project" />
+    <orderEntry type="library" name="Maven: com.github.sealedtx:java-youtube-downloader:2.4.5" level="project" />
+    <orderEntry type="library" name="Maven: com.alibaba:fastjson:1.2.62" level="project" />
     <orderEntry type="library" name="Maven: net.sourceforge.tess4j:tess4j:4.5.4" level="project" />
     <orderEntry type="library" name="Maven: net.java.dev.jna:jna:5.6.0" level="project" />
     <orderEntry type="library" name="Maven: com.github.jai-imageio:jai-imageio-core:1.4.0" level="project" />

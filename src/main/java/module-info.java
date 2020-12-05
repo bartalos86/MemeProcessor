@@ -23,6 +23,9 @@ module MemeProcessor {
     requires org.bytedeco.tesseract.windows.x86_64;
     requires tess4j;
     requires javafx.graphics;
+    requires java.youtube.downloader;
+    requires java.sql;
+    requires fastjson;
 
     exports bartalos86.controllers;
 
